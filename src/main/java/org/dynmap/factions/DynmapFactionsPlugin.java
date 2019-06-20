@@ -41,7 +41,6 @@ import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.factions.event.EventFactionsChunksChange;
 import com.massivecraft.factions.event.EventFactionsCreate;
 import com.massivecraft.factions.event.EventFactionsDisband;
-import com.massivecraft.factions.event.EventFactionsHomeChange;
 import com.massivecraft.factions.event.EventFactionsMembershipChange;
 import com.massivecraft.factions.event.EventFactionsNameChange;
 import com.massivecraft.massivecore.ps.PS;
@@ -253,14 +252,6 @@ public class DynmapFactionsPlugin extends JavaPlugin {
         m.setLineStyle(as.strokeweight, as.strokeopacity, sc);
         m.setFillStyle(as.fillopacity, fc);
         m.setBoostFlag(as.boost);
-    }
-    
-    private MarkerIcon getMarkerIcon(String factname, Faction fact) {
-        AreaStyle as = cusstyle.get(factname);
-        if(as == null) {
-            as = defstyle;
-        }
-        return as.homeicon;
     }
  
     enum direction { XPLUS, ZPLUS, XMINUS, ZMINUS };
@@ -507,30 +498,6 @@ public class DynmapFactionsPlugin extends JavaPlugin {
                     handleFactionOnWorld(factname, fact, worldblocks.getKey(), worldblocks.getValue(), newmap, newmark);
                 }
                 factblocks.blocks.clear();
-
-                /* Now, add marker for home location */
-                PS homeloc = fact.getHome();
-                if(homeloc != null) {
-                    String markid = fc.getUniverse() + "_" + factname + "__home";
-                    MarkerIcon ico = getMarkerIcon(factname, fact);
-                    if(ico != null) {
-                        Marker home = resmark.remove(markid);
-                        String lbl = factname + " [home]";
-                        if(home == null) {
-                            home = set.createMarker(markid, lbl, homeloc.getWorld(), 
-                                    homeloc.getLocationX(), homeloc.getLocationY(), homeloc.getLocationZ(), ico, false);
-                        }
-                        else {
-                            home.setLocation(homeloc.getWorld(), homeloc.getLocationX(), homeloc.getLocationY(), homeloc.getLocationZ());
-                            home.setLabel(lbl);   /* Update label */
-                            home.setMarkerIcon(ico);
-                        }
-                        if (home != null) {
-                            home.setDescription(formatInfoWindow(fact)); /* Set popup */
-                            newmark.put(markid, home);
-                        }
-                    }
-                }
         }
         blocks_by_faction.clear();
         
@@ -598,12 +565,6 @@ public class DynmapFactionsPlugin extends JavaPlugin {
         }
         @EventHandler(priority=EventPriority.MONITOR)
         public void onFactionRename(EventFactionsNameChange event) {
-            if(event.isCancelled())
-                return;
-            requestUpdateFactions();
-        }
-        @EventHandler(priority=EventPriority.MONITOR)
-        public void onFactionRename(EventFactionsHomeChange event) {
             if(event.isCancelled())
                 return;
             requestUpdateFactions();

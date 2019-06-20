@@ -77,14 +77,14 @@
   		<artifactId>Factions</artifactId>
   		<version>2.7.1</version>
   		<scope>system</scope>
-  		<systemPath>${project.basedir}/Factions-2.7.1.jar</systemPath>
+  		<systemPath>${project.basedir}/Factions.jar</systemPath>
   	</dependency>
   	<dependency>
   		<groupId>com.massivecraft</groupId>
   		<artifactId>MassiveCore</artifactId>
   		<version>2.7.1</version>
   		<scope>system</scope>
-  		<systemPath>${project.basedir}/MassiveCore-2.7.1.jar</systemPath>
+  		<systemPath>${project.basedir}/MassiveCore.jar</systemPath>
   	</dependency>
   </dependencies>
 </project>
