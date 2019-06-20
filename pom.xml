@@ -36,8 +36,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.0.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
   	</plugins>
@@ -48,8 +48,8 @@
 			</releases>
 			<snapshots>
 			</snapshots>
-			<id>bukkit-repo</id>
-			<url>http://repo.bukkit.org/content/repositories/releases/</url>
+			<id>spigot-repo</id>
+			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
 		</repository>
 		<repository>
 			<releases>
@@ -70,19 +70,19 @@
   	<dependency>
   		<groupId>org.bukkit</groupId>
   		<artifactId>bukkit</artifactId>
-  		<version>1.7.10-R0.1-SNAPSHOT</version>
+  		<version>1.14.2-R0.1-SNAPSHOT</version>
   	</dependency>
   	<dependency>
   		<groupId>com.massivecraft</groupId>
-  		<artifactId>Factions</artifactId>
-  		<version>2.7.1</version>
+  		<artifactId>Factions3</artifactId>
+  		<version>3.2.2</version>
   		<scope>system</scope>
   		<systemPath>${project.basedir}/Factions.jar</systemPath>
   	</dependency>
   	<dependency>
   		<groupId>com.massivecraft</groupId>
-  		<artifactId>MassiveCore</artifactId>
-  		<version>2.7.1</version>
+  		<artifactId>MassiveCore3</artifactId>
+  		<version>3.2.2</version>
   		<scope>system</scope>
   		<systemPath>${project.basedir}/MassiveCore.jar</systemPath>
   	</dependency>
